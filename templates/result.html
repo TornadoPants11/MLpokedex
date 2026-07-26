@@ -1,81 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,
+                   initial-scale=1.0">
+    <title>
+        Pokémon Detected!
+    </title>
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
-    <title>Pokedex Results</title>
-
-    <link
-        rel="stylesheet"
-        href="{{ url_for(
-            'static',
-            filename='style.css'
-        ) }}">
-
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+                           filename='style.css') }}">
 </head>
-
 <body>
+    <div class="result-card">
+        <div class="pokemon-name">
+            <h1>{{ prediction }}</h1>
+        </div>
 
-<div class="container">
+        <div class="image-container">
+            <img
+        src="{{ pokemon_image }}"
+        alt="{{ prediction }}"
+        class="pokemon-image"
+        >
+        </div>
 
-    <h1>
-
-        {{ pokemon_name }}
-
-    </h1>
-
-    <img
-        src="{{ image_path }}"
-        class="result-image">
-
-    <p class="confidence">
-
-        Confidence:
-        {{ confidence }}%
-
-    </p>
-
-    <div class="predictions">
+        <h2>
+            Pokédex No. #{{ pokemon_id }}
+        </h2>
 
         <h3>
-
-            Top 5 Predictions
-
+            Type:
+            {{ pokemon_types }}
         </h3>
 
-        {% for pokemon, score in predictions %}
+        <h3>
+            Confidence:
+            {{ "%.2f"|format(confidence) }}%
+        </h3>
+
+        <div class="description-box">
+            <h2>
+                Pokédex Entry
+            </h2>
 
             <p>
-
-                {{ pokemon }}
-                -
-                {{ score }}%
-
+                {{ description }}
             </p>
+        </div>
 
-        {% endfor %}
+        <div class="top5-box">
+            <h2>
+                Top 5 Predictions
+            </h2>
 
+            <ul>
+                {% for name, score in top5 %}
+                <li>
+                    {{ name }}
+                    -
+                    {{ "%.2f"|format(score) }}%
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <a href="/">
+            <button
+                class="scan-button"
+            >
+                Scan Another Pokémon
+            </button>
+        </a>
     </div>
-
-    <a
-        href="/"
-        class="back-button">
-
-        <button>
-
-            Back
-
-        </button>
-
-    </a>
-
-</div>
-
 </body>
 </html>
