@@ -1,0 +1,10 @@
+.venv/
+data/
+uploads/
+__pycache__/
+*.pyc
+
+train.py
+load_dataset.py
+inspect_dataset.py
+corruptIMG.py

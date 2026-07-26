@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Pokedex AI</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for(
+            'static',
+            filename='style.css'
+        ) }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>ML Pokedex</h1>
+
+    <div class="capture-box">
+
+        <div class="blink">
+
+            ----------------------------------------
+            <br>
+
+            EfficientNet-B3 Loaded Successfully
+
+            <br>
+
+            ----------------------------------------
+
+            <br>
+
+            Open Camera to capture a Pokémon.
+
+            <br><br>
+
+            Validation Accuracy: ~95%
+
+            <br><br>
+
+            ...and hit Scan for predictions.
+
+        </div>
+
+    </div>
+
+    <form
+        action="/predict"
+        method="POST"
+        enctype="multipart/form-data">
+
+        <label
+            for="image-upload"
+            class="custom-upload">
+
+            Open Camera
+
+        </label>
+
+        <input
+            id="image-upload"
+            type="file"
+            name="image"
+            accept="image/*"
+            capture="environment"
+            hidden>
+
+        <button type="submit">
+
+            Scan
+
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
