@@ -63,7 +63,7 @@ def get_pokemon_info(name):
 def home():
     return render_template("index.html")
 
-@app.route("/predict",methods=["GET""POST"])
+@app.route("/predict",methods=["GET", "POST"])
 def predict():
     if request.method == "GET":
         return redirect("/")

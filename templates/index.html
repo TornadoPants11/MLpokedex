@@ -56,7 +56,6 @@
     </div>
 
    <form
-        id="upload-form"
         action="/predict"
         method="POST"
         enctype="multipart/form-data">
@@ -75,7 +74,7 @@
             name="image"
             accept="image/*"
             required
-            style="display:none">
+            hidden>
 
         <button type="submit"
         class="scan-button">
