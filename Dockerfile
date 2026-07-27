@@ -8,4 +8,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 7860
 
-CMD ["python", "app.py"]
+CMD ["gunicorn", "app:app", "--workers", "1", "--bind", "0.0.0.0:10000"]
