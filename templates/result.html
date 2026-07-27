@@ -1,16 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,
+                   initial-scale=1.0">
+    <title>
+        Pokémon Detected!
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+                           filename='style.css') }}">
 </head>
-
 <body>
+    <div class="result-card">
+        <div class="pokemon-name">
+            <h1>{{ prediction }}</h1>
+        </div>
 
-<h1>SUCCESS!</h1>
+        <div class="image-container">
+            <img
+        src="{{ pokemon_image }}"
+        alt="{{ prediction }}"
+        class="pokemon-image"
+        >
+        </div>
 
-<p>{{ prediction }}</p>
+        <h2>
+            Pokédex No. #{{ pokemon_id }}
+        </h2>
 
-<p>{{ confidence }}</p>
+        <h3>
+            Type:
+            {{ pokemon_types }}
+        </h3>
 
+        <h3>
+            Confidence:
+            {{ "%.2f"|format(confidence) }}%
+        </h3>
+
+        <div class="description-box">
+            <h2>
+                Pokédex Entry
+            </h2>
+
+            <p>
+                {{ description }}
+            </p>
+        </div>
+
+        <div class="top5-box">
+            <h2>
+                Top 5 Predictions
+            </h2>
+
+            <ul>
+                {% for name, score in top5 %}
+                <li>
+                    {{ name }}
+                    -
+                    {{ "%.2f"|format(score) }}%
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <a href="/">
+            <button
+                class="scan-button"
+            >
+                Scan Another Pokémon
+            </button>
+        </a>
+    </div>
 </body>
 </html>

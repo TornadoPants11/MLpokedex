@@ -63,9 +63,11 @@ def get_pokemon_info(name):
 def home():
     return render_template("index.html")
 
-@app.route("/predict",methods=["POST"])
+@app.route("/predict",methods=["GET""POST"])
 def predict():
-    print("prediction route hit!")
+    if request.method == "GET":
+        return redirect("/")
+    print("prediction route hit!", flush=True)
     if "image" not in request.files:
         return redirect("/")
     file = request.files["image"]
