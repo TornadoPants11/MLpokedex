@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect
 from predict import predict_image
+from PIL import Image
+import io
 import os
 import requests
 
@@ -73,8 +75,13 @@ def predict():
     file = request.files["image"]
     if file.filename == "":
         return redirect("/")
+    image = Image.open(file)
+    image.thumbnail((512,512))
+    buffer = io.BytesIO()
+    image.save(buffer, format="JPEG")
+    buffer.seek(0)
 
-    prediction, confidence, top5 = (predict_image(file))
+    prediction, confidence, top5 = (predict_image(buffer))
     print("Prediction compelted")
     (
         pokemon_image,

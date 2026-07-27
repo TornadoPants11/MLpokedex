@@ -34,9 +34,7 @@ transform = transforms.Compose(
 )
 
 def predict_image(image_file):
-    image = Image.open(
-        image_file
-    ).convert("RGB")
+    image = Image.open(image_file).convert("RGB")
     image = transform(image)
     image = image.unsqueeze(0)
     image = image.to(device)
