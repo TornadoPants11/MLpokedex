@@ -65,6 +65,7 @@ def home():
 
 @app.route("/predict",methods=["POST"])
 def predict():
+    print("prediction route hit!")
     if "image" not in request.files:
         return redirect("/")
     file = request.files["image"]
@@ -72,7 +73,7 @@ def predict():
         return redirect("/")
 
     prediction, confidence, top5 = (predict_image(file))
-
+    print("Prediction compelted")
     (
         pokemon_image,
         pokemon_id,
